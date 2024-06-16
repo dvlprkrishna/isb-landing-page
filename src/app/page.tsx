@@ -363,11 +363,11 @@ export default function Home() {
               The ISB faculty comprises distinguished academics with deep domain
               expertise, drawing from extensive research, real-world
               involvement, and substantial teaching experience gained at
-              esteemed global business institutions. ISB's Executive Education
-              programmes are known for their distinct teaching methodologies and
-              a rigorous and stimulating learning environment that pushes
-              participants to expand their learning boundaries beyond their
-              beliefs.
+              esteemed global business institutions. ISB&apos;s Executive
+              Education programmes are known for their distinct teaching
+              methodologies and a rigorous and stimulating learning environment
+              that pushes participants to expand their learning boundaries
+              beyond their beliefs.
             </p>
           </div>
           <div className="w-full sm:w-1/2">
@@ -410,10 +410,10 @@ export default function Home() {
                 </p>
                 <p className="mt-2 text-gray-700">
                   Prof. Marisetty runs the Blockchain lab at ISB and trains
-                  senior executives of many of India’s top banks and corporates
-                  for undertaking their digital transformation journey in
-                  financial services. He has published several research papers
-                  on fintech in top international journals.
+                  senior executives of many of India&apos;s top banks and
+                  corporates for undertaking their digital transformation
+                  journey in financial services. He has published several
+                  research papers on fintech in top international journals.
                 </p>
                 <a href="#" className="text-blue-500 mt-2 inline-block">
                   ...see more
@@ -464,11 +464,11 @@ export default function Home() {
                 Associate Professor, Finance
               </p>
               <p className="text-sm mt-4">
-                He is a faculty member at ISB's Finance Department since 2013
-                with a Ph.D. in Finance from Washington University, directs the
-                Digital Identity Research Initiative. His research delves into
-                corporate finance's impact on emerging markets, encompassing
-                law, government, ...{" "}
+                He is a faculty member at ISB&apos;s Finance Department since
+                2013 with a Ph.D. in Finance from Washington University, directs
+                the Digital Identity Research Initiative. His research delves
+                into corporate finance&apos;s impact on emerging markets,
+                encompassing law, government, ...{" "}
                 <span className="text-blue-300 cursor-pointer">See More</span>
               </p>
             </div>
