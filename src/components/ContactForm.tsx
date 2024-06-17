@@ -20,11 +20,19 @@ export default function ContactForm() {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData({
+        ...formData,
+        [name]: checked,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -36,7 +44,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto p-6 bg-white rounded-md shadow-xl sticky top"
+      className="max-w-md mx-auto p-6 bg-white rounded-md shadow-xl"
     >
       <h2 className="text-2xl font-bold mb-6">Have questions? Contact us</h2>
       <div className="mb-4">
@@ -130,7 +138,6 @@ export default function ContactForm() {
           Submit
         </button>
       </div>
-      <div></div>
     </form>
   );
 }
