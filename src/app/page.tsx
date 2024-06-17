@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/table";
 
 import Image from "next/image";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "@/app/keen-slider.min.css";
 import { AccordionBox } from "@/components/Accordion-box";
@@ -104,7 +104,11 @@ const projects = [
   },
 ];
 
-function Arrow(props) {
+function Arrow(props: {
+  disabled: any;
+  onClick: MouseEventHandler<SVGSVGElement> | undefined;
+  left: any;
+}) {
   const disabled = props.disabled ? " arrow--disabled" : "";
   return (
     <svg
@@ -423,20 +427,21 @@ export default function Home() {
                   <>
                     <Arrow
                       left
-                      onClick={(e) =>
+                      onClick={(e: { stopPropagation: () => any }) =>
                         e.stopPropagation() || instanceRef.current?.prev()
                       }
                       disabled={currentSlide === 0}
                     />
 
                     <Arrow
-                      onClick={(e) =>
+                      onClick={(e: { stopPropagation: () => any }) =>
                         e.stopPropagation() || instanceRef.current?.next()
                       }
                       disabled={
                         currentSlide ===
                         instanceRef.current.track.details.slides.length - 1
                       }
+                      left={undefined}
                     />
                   </>
                 )}
