@@ -92,7 +92,7 @@ const projects = [
   {
     name: "Pineapple",
     description:
-      "Pineapple's digital distribution strategy excels in converting clicks to clients with cost efficiency and employs a peer-to-peer model for improved risk management and lower fraud rates in a traditionally dominated market.",
+      "Pineapples digital distribution strategy excels in converting clicks to clients with cost efficiency and employs a peer-to-peer model for improved risk management and lower fraud rates in a traditionally dominated market.",
     image: "edua.svg", // replace with actual image path
     hoverDescription: "More text about Pineapple on hover.",
   },
@@ -269,7 +269,7 @@ export default function Home() {
             Explore financial technology applications with ISB - the No.1
             Executive Education B.School. This is an exciting opportunity to
             meet and interact with brilliant minds who have developed niche
-            fintech applications. You will dive deep into these apps'
+            fintech applications. You will dive deep into these apps&apos;
             technology, features, and benefits and learn about the founders
             challenges and opportunities in developing and launching them. Join
             crucial discussions on how fintech apps impact the financial
