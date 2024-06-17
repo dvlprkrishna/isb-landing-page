@@ -1,8 +1,15 @@
-// components/ContactForm.js
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+
+interface FormData {
+  fullName: string;
+  email: string;
+  countryCode: string;
+  contactNumber: string;
+  termsAccepted: boolean;
+}
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
     countryCode: "+91",
@@ -10,7 +17,9 @@ export default function ContactForm() {
     termsAccepted: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -18,7 +27,7 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Handle form submission
     console.log("Form data:", formData);
@@ -116,7 +125,7 @@ export default function ContactForm() {
       <div className="flex items-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-8 cursor-pointer">
         <button
           type="submit"
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm   text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-semibold text-xl"
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-semibold text-xl"
         >
           Submit
         </button>
