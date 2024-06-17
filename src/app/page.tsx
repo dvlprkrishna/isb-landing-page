@@ -1,5 +1,7 @@
+"use client";
 import { AccordionDemo } from "@/components/Accordion";
 import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -17,6 +19,11 @@ import {
 } from "@/components/ui/table";
 
 import Image from "next/image";
+import { useState } from "react";
+import { useKeenSlider } from "keen-slider/react";
+import "@/app/keen-slider.min.css";
+import { AccordionBox } from "@/components/Accordion-box";
+import ContactForm from "@/components/ContactForm";
 const data = [
   {
     _id: 1,
@@ -61,9 +68,82 @@ const data = [
     image: "Frame6.svg",
   },
 ];
-export default function Home() {
+
+const cards = [
+  { logo: "/edua.svg", title: "Eduvanz", category: "Lending" },
+  { logo: "/edua.svg", title: "INDmoney", category: "Wealth Tech" },
+  { logo: "/edua.svg", title: "PayIO", category: "Payment" },
+  { logo: "/edua.svg", title: "Finagg", category: "Supply Chain Finance" },
+  { logo: "/edua.svg", title: "NEO Insurance", category: "Insuretech" },
+];
+const projects = [
+  {
+    name: "Prosper",
+    description: "",
+    image: "edua.svg", // replace with actual image path
+    hoverDescription: "More text about Prosper on hover.",
+  },
+  {
+    name: "PayTm",
+    description: "",
+    image: "edua.svg", // replace with actual image path
+    hoverDescription: "More text about PayTm on hover.",
+  },
+  {
+    name: "Pineapple",
+    description:
+      "Pineapple's digital distribution strategy excels in converting clicks to clients with cost efficiency and employs a peer-to-peer model for improved risk management and lower fraud rates in a traditionally dominated market.",
+    image: "edua.svg", // replace with actual image path
+    hoverDescription: "More text about Pineapple on hover.",
+  },
+  {
+    name: "Truelayer",
+    description: "",
+    image: "edua.svg", // replace with actual image path
+    hoverDescription: "More text about Truelayer on hover.",
+  },
+];
+
+function Arrow(props) {
+  const disabled = props.disabled ? " arrow--disabled" : "";
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between ">
+    <svg
+      onClick={props.onClick}
+      className={`arrow ${
+        props.left ? "arrow--left" : "arrow--right"
+      } ${disabled}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      {props.left && (
+        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+      )}
+      {!props.left && (
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+      )}
+    </svg>
+  );
+}
+
+export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [sliderRef, instanceRef] = useKeenSlider({
+    slides: {
+      perView: 4,
+      spacing: 15,
+    },
+    initial: 0,
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
+  });
+
+  return (
+    <main className="relative flex min-h-screen flex-col items-center justify-between ">
       {/* header */}
       <section className=" w-full text-left gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/headerw.webp')]">
         <div className="container text-white flex flex-col sm:flex-row gap-y-5 justify-between">
@@ -158,10 +238,213 @@ export default function Home() {
 
       {/* Programme Curriculum
        */}
+      <section className="container text-left gap-6 pb-8 pt-8 mt-8 md:py-10">
+        <div className="flex w-full flex-col items-start gap-x-2 gap-y-4">
+          <h2 className="text-3xl text-[#3c4852] font-bold  md:text-4xl">
+            Programme <span className="text-[#3f95d0]">Curriculum</span>{" "}
+          </h2>
+          <p className=" text-left text-lg text-muted-foreground">
+            This programme blends ISB&apos;s leadership education expertise with
+            Imarticus&apos; competence in providing learners with
+            future-focused, outcome-oriented learning experiences.
+          </p>
+          <div className="relative flex w-full flex-col sm:flex-row  items-start gap-x-10 gap-y-4">
+            <div className="sm:w-2/3 w-full">
+              <AccordionBox />
+            </div>
+            <div className="relative sm:w-1/3 w-full">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Fintech Showcases
+      {/* Fintech Showcases */}
+      <section className=" bg-[#f0f4f9] w-full ">
+        <div className="container  flex w-full flex-col items-center text-center gap-6 pb-8 pt-8 mt-8 md:py-10 gap-x-2 gap-y-16">
+          <h2 className="text-3xl text-center text-[#3c4852] font-bold md:text-4xl">
+            <span className="text-[#3f95d0]">Fintech </span> Showcases
+          </h2>
+          <p className="text-center text-lg text-muted-foreground">
+            Explore financial technology applications with ISB - the No.1
+            Executive Education B.School. This is an exciting opportunity to
+            meet and interact with brilliant minds who have developed niche
+            fintech applications. You will dive deep into these apps'
+            technology, features, and benefits and learn about the founders
+            challenges and opportunities in developing and launching them. Join
+            crucial discussions on how fintech apps impact the financial
+            industry and the future of finance. Overall, exploring fintech apps
+            with their founders can provide valuable insights and perspectives
+            into financial technology and its potential to transform how we
+            manage our finances.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full py-8">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="bg-white group relative shadow-md rounded-lg text-left overflow-hidden"
+              >
+                <div className="">
+                  <div className="p-6 w-full flex flex-col gap-y-3">
+                    <div className="relative  w-full h-[54px]">
+                      <Image
+                        src={card.logo}
+                        alt={card.title}
+                        width={1}
+                        height={54}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="text-md mb-1">Explore</div>
+                    <div className="text-md font-bold mb-4">
+                      {card.category}
+                    </div>
+                  </div>
 
- */}
+                  <div
+                    className="text-md inline-flex w-full justify-between items-center text-white p-6"
+                    style={{
+                      background:
+                        "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
+                    }}
+                  >
+                    Know More
+                    {/* <ArrowUpIcon className="w-6 h-6 text-black" /> */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  className="text-white text-sm p-6 w-full absolute bottom-0 left-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
+                  }}
+                >
+                  <div className="text-md py-5">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quia ullam a ipsam provident id vitae iure dolorem ratione.
+                    Laborum consectetur non dignissimos quia earum totam ut
+                    labore adipisci exercitationem eligendi.
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex mx-auto font-bold">
+            Disclaimer:{" "}
+            <span className=" font-normal">
+              {" "}
+              These are indicative fintech showcases.
+            </span>
+          </div>
+        </div>
+
+        {/*  second carousel */}
+        <div className="container">
+          <div className="relative w-full mb-8 mx-auto">
+            <h2 className="text-3xl text-center text-[#3c4852] font-bold md:text-4xl">
+              Projects that
+              <span className="text-[#3f95d0]">you will work on </span>
+            </h2>
+            <p className="text-center my-5 text-lg text-muted-foreground">
+              Given below is a list of a few indicative case studies that
+              summarise challenges faced by business leaders and strategies to
+              overcome them:
+            </p>
+            <>
+              <div className="navigation-wrapper">
+                <div ref={sliderRef} className="keen-slider">
+                  {cards.map((card, index) => (
+                    <div
+                      key={index}
+                      className="bg-[url('/2.webp')] bg-cover group relative shadow-md rounded-lg text-left overflow-hidden keen-slider__slide number-slide"
+                    >
+                      <div className="">
+                        <div className="p-6 w-full flex flex-col gap-y-3">
+                          <div className="relative  w-full h-[250px]">
+                            <Image
+                              src={"/2.webp"}
+                              alt={card.title}
+                              width={270}
+                              height={376}
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                          </div>
+                        </div>
+
+                        <div
+                          className="text-md inline-flex w-full justify-between items-center text-white p-6"
+                          style={{
+                            background:
+                              "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
+                          }}
+                        >
+                          <div className="text-md font-bold ">
+                            {card.category}
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="text-white text-sm p-6 w-full absolute bottom-0 left-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                        style={{
+                          background:
+                            "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
+                        }}
+                      >
+                        <div className="text-md py-5">
+                          <div className="text-xl font-bold ">
+                            {card.category}
+                          </div>
+                          <hr className="my-4" />
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Quia ullam a ipsam provident id vitae iure
+                          dolorem ratione. Laborum consectetur non dignissimos
+                          quia earum totam ut labore adipisci exercitationem
+                          eligendi.
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {loaded && instanceRef.current && (
+                  <>
+                    <Arrow
+                      left
+                      onClick={(e) =>
+                        e.stopPropagation() || instanceRef.current?.prev()
+                      }
+                      disabled={currentSlide === 0}
+                    />
+
+                    <Arrow
+                      onClick={(e) =>
+                        e.stopPropagation() || instanceRef.current?.next()
+                      }
+                      disabled={
+                        currentSlide ===
+                        instanceRef.current.track.details.slides.length - 1
+                      }
+                    />
+                  </>
+                )}
+              </div>
+            </>
+          </div>
+        </div>
+      </section>
 
       {/* Projects that you will work on
        */}
@@ -891,6 +1174,34 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/*  sticky */}
+      <div className="fixed bottom-0 w-full flex flex-row justify-center items-baseline gap-x-5 bg-white space-y-4 p-4">
+        <div className="flex items-center space-x-2 bg-transparent border border-blue-500 text-blue-500 rounded-lg py-2 px-8 cursor-pointer">
+          <div className="relative w-6 h-6">
+            <Image
+              alt="Get free consulting"
+              height={20}
+              width={20}
+              src="/Call.svg"
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+          </div>
+          <span className="font-semibold text-lg">Get Free Consulting</span>
+        </div>
+        <div className="flex items-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-8 cursor-pointer">
+          <div className="relative w-6 h-6">
+            <Image
+              alt="Download Brochure"
+              src="/download.svg"
+              height={20}
+              width={20}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          <span className="font-semibold text-lg">Download Brochure</span>
+        </div>
+      </div>
     </main>
   );
 }
