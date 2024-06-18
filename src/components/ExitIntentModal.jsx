@@ -35,7 +35,7 @@ const ExitIntentDialog = () => {
         <DialogHeader>
           <DialogTitle>Before you leave...</DialogTitle>
           <DialogDescription>
-            We'd love to ask you a few questions:
+            We&apos;d love to ask you a few questions:
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
