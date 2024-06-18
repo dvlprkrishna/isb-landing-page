@@ -138,6 +138,14 @@ export default function Home() {
       perView: 4,
       spacing: 15,
     },
+    breakpoints: {
+      "(max-width: 768px)": {
+        slides: {
+          perView: 1,
+          spacing: 10,
+        },
+      },
+    },
     initial: 0,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
@@ -161,7 +169,7 @@ export default function Home() {
             <p className=" text-white text-2xl ">
               Pioneer Leadership in Fintech
             </p>
-            <div className="flex text-xl flex-row gap-8">
+            <div className="flex text-xl flex-col sm:flex-row gap-2 sm:gap-8">
               <p className="flex   items-center gap-x-2">
                 <span>
                   <Image src="/Clock.svg" height={16} width={16} alt="clock" />
@@ -361,7 +369,7 @@ export default function Home() {
         <div className="container">
           <div className="relative w-full mb-8 mx-auto">
             <h2 className="text-3xl text-center text-[#3c4852] font-bold md:text-4xl">
-              Projects that
+              Projects that{" "}
               <span className="text-[#3f95d0]">you will work on </span>
             </h2>
             <p className="text-center my-5 text-lg text-muted-foreground">
@@ -632,7 +640,7 @@ export default function Home() {
       {/* Know More */}
       <section className="container text-left gap-6 pb-8 pt-8 mt-8 md:py-10">
         <div className="flex w-full flex-col sm:flex-row-reverse  items-start gap-x-2 gap-y-4">
-          <div className="w-full sm:w-1/2 pl-8">
+          <div className="w-full sm:w-1/2 sm:pl-8">
             <h2 className="text-3xl mb-8 text-[#3c4852] font-bold  md:text-4xl">
               Know More About <span className="text-[#3f95d0]">ISB</span>
             </h2>
@@ -733,12 +741,12 @@ export default function Home() {
             Faculty <span className="text-[#3f95d0]">Spotlight</span>
           </h2>
 
-          <div className="flex flex-col sm:flex-row justify-center mt-10 space-y-6 sm:space-y-0 sm:space-x-8">
+          <div className="flex flex-col items-center sm:flex-row justify-center mt-10 space-y-6 sm:space-y-0 sm:space-x-8">
             <div
               style={{
                 background: "linear-gradient(180deg,#3e3b68,#6c3a71)",
               }}
-              className="bg-purple-600 text-white relative p-6 pt-16 rounded-lg shadow-lg w-72"
+              className="bg-purple-600 text-white relative p-6 mb-8 sm:mb-0 pt-16 rounded-lg shadow-lg w-72"
             >
               <div className="absolute left-1/2 transform -translate-x-1/2 -top-10">
                 <Image
