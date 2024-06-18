@@ -1193,8 +1193,8 @@ export default function Home() {
       </section>
 
       {/*  sticky */}
-      <div className="fixed bottom-0 w-full flex flex-row justify-center items-baseline gap-x-5 bg-white space-y-4 p-4">
-        <div className="flex items-center space-x-2 bg-transparent border border-blue-500 text-blue-500 rounded-lg py-2 px-8 cursor-pointer">
+      <div className="fixed bottom-0 w-full flex flex-row justify-center items-baseline gap-x-3 sm:gap-x-5 bg-white space-y-4 p-8 sm:p-4">
+        <div className="flex items-center space-x-2 bg-transparent border border-blue-500 text-blue-500 rounded-lg py-2 px-3 sm:px-8 cursor-pointer">
           <div className="relative w-6 h-6">
             <Image
               alt="Get free consulting"
@@ -1206,7 +1206,7 @@ export default function Home() {
           </div>
           <span className="font-semibold text-lg">Get Free Consulting</span>
         </div>
-        <div className="flex items-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-8 cursor-pointer">
+        <div className="flex items-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-3 sm:px-8 cursor-pointer">
           <div className="relative w-6 h-6">
             <Image
               alt="Download Brochure"
