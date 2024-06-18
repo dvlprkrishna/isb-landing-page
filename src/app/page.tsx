@@ -24,6 +24,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "@/app/keen-slider.min.css";
 import { AccordionBox } from "@/components/Accordion-box";
 import ContactForm from "@/components/ContactForm";
+import ExitIntentModal from "@/components/ExitIntentModal";
 const data = [
   {
     _id: 1,
@@ -149,25 +150,25 @@ export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-between ">
       {/* header */}
-      <section className=" w-full text-left gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/headerw.webp')]">
+      <section className=" w-full text-left gap-6 pb-8 pt-6 md:py-24 bg-cover bg-[url('/headerw.webp')]">
         <div className="container text-white flex flex-col sm:flex-row gap-y-5 justify-between">
-          <div className="flex flex-col gap-y-6">
+          <div className="flex flex-col gap-y-4">
             {/* ISBLogo.webp */}
             <Image width={267} height={64} src="/ISBLogo.webp" alt="campus" />
-            <h2 className="text-2xl text-white max-w-md font-bold     md:text-3xl">
+            <h2 className="text-2xl text-white max-w-md font-bold     md:text-[40px] md:leading-[40px]">
               Senior Leadership Programme In Fintech
             </h2>
-            <p className=" text-white text-xl ">
+            <p className=" text-white text-2xl ">
               Pioneer Leadership in Fintech
             </p>
-            <div className="flex flex-row gap-8">
-              <p className="flex items-center gap-x-2">
+            <div className="flex text-xl flex-row gap-8">
+              <p className="flex   items-center gap-x-2">
                 <span>
-                  <Image src="/clock.svg" height={16} width={16} alt="clock" />
+                  <Image src="/Clock.svg" height={16} width={16} alt="clock" />
                 </span>
                 8 Months
               </p>
-              <p className="flex items-center gap-x-2">
+              <p className="flex   items-center gap-x-2">
                 <span>
                   <Image
                     src="/Live-training.svg"
@@ -179,11 +180,11 @@ export default function Home() {
                 Online + Campus Immersion
               </p>
             </div>
-            <div className="flex mt-5 max-w-md  space-x-4">
-              <Button className="flex-1 border border-white hover:bg-transparent bg-transparent text-white py-8 px-2 text-md rounded-lg">
+            <div className="flex mt-5 max-w-md   space-x-4">
+              <Button className="flex-1 text-lg font-semibold border border-white hover:bg-transparent bg-transparent text-white py-8 px-2 rounded-lg">
                 Download Brochure
               </Button>
-              <Button className="flex-1 text-[#3c4852] bg-white hover:bg-white py-8 px-2 text-md rounded-lg">
+              <Button className="flex-1 text-lg font-semibold text-[#3c4852] bg-white hover:bg-white py-8 px-2 text-md rounded-lg">
                 Apply Now
               </Button>
             </div>
@@ -679,7 +680,10 @@ export default function Home() {
           </h2>
 
           <div className="shadow-lg ">
-            <div className="h-10 bg-blue-300"></div>
+            <div
+              className="h-[17px] rounded-t-md bg-blue-300"
+              style={{ background: "rgb(22, 93, 147)" }}
+            ></div>
 
             <div className="flex p-6 flex-col md:flex-row gap-6">
               <div className="flex-1">
@@ -1207,6 +1211,9 @@ export default function Home() {
           <span className="font-semibold text-lg">Download Brochure</span>
         </div>
       </div>
+
+      {/* exit intent */}
+      <ExitIntentModal />
     </main>
   );
 }
