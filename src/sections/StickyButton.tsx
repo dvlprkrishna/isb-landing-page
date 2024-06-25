@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function StickyButton() {
   return (
     <>
-      <div className=" hidden sm:flex  bg-white p-8">
+      <div className=" hidden sm:flex  bg-white py-4 px-2">
         <div className=" flex justify-center items-center flex-row gap-x-4 sm:gap-x-8 w-screen ">
           <Link
             href={"/"}
@@ -41,7 +41,7 @@ export default function StickyButton() {
         </div>
       </div>
 
-      <div className="flex bg-white py-8 px-2">
+      <div className="flex sm:hidden bg-white py-4 px-2">
         <div className="flex justify-center items-center flex-row gap-x-4 sm:gap-x-8 w-screen">
           <Link
             href="/"
