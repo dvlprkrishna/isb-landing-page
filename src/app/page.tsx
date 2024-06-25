@@ -25,6 +25,7 @@ import "@/app/keen-slider.min.css";
 import { AccordionBox } from "@/components/Accordion-box";
 import ContactForm from "@/components/ContactForm";
 import ExitIntentModal from "@/components/ExitIntentModal";
+import Traits from "@/sections/Traits";
 const data = [
   {
     _id: 1,
@@ -104,7 +105,6 @@ const projects = [
     hoverDescription: "More text about Truelayer on hover.",
   },
 ];
-
 function Arrow(props: {
   disabled: any;
   onClick: MouseEventHandler<SVGSVGElement> | undefined;
@@ -131,37 +131,6 @@ function Arrow(props: {
 }
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    // Initial check
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const [currentSlide1, setCurrentSlide1] = useState(0);
-  const [loaded1, setLoaded1] = useState(false);
-  const [slider1Ref, instance1Ref] = useKeenSlider({
-    slides: {
-      perView: 2,
-      spacing: 20,
-    },
-
-    initial: 0,
-    slideChanged(slider) {
-      setCurrentSlide1(slider.track.details.rel);
-    },
-    created() {
-      setLoaded1(true);
-    },
-  });
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -183,36 +152,6 @@ export default function Home() {
     },
     created() {
       setLoaded(true);
-    },
-  });
-
-  // traits
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    // Initial check
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const [currentSlide2, setCurrentSlide2] = useState(0);
-  const [loaded2, setLoaded2] = useState(false);
-  const [slider2Ref, instance2Ref] = useKeenSlider({
-    slides: {
-      perView: 2,
-      spacing: 20,
-    },
-
-    initial: 0,
-    slideChanged(slider) {
-      setCurrentSlide2(slider.track.details.rel);
-    },
-    created() {
-      setLoaded2(true);
     },
   });
 
@@ -529,76 +468,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="flex justify-center items-center  py-6">
-            <div className="grid sm:grid-cols-2 md:grid-cols-6 gap-y-4 gap-x-8">
-              <>
-                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                  <Image
-                    src="/traits1.svg"
-                    alt="Technology Leader"
-                    width={64}
-                    height={64}
-                  />
-                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                    Technology Leader
-                  </p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                  <Image
-                    src="/traits2.svg"
-                    alt="Strategic & Creative Thinker"
-                    width={64}
-                    height={64}
-                  />
-                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                    Strategic & Creative Thinker
-                  </p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                  <Image
-                    src="/traits3.svg"
-                    alt="Data-driven Problem Solver"
-                    width={64}
-                    height={64}
-                  />
-                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                    Data-driven Problem Solver
-                  </p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                  <Image
-                    src="/traits4.svg"
-                    alt="Catalyst for Innovation"
-                    width={64}
-                    height={64}
-                  />
-                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                    Catalyst for Innovation
-                  </p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                  <Image
-                    src="/traits5.svg"
-                    alt="Global Thought Leadership"
-                    width={64}
-                    height={64}
-                  />
-                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                    Global Thought Leadership
-                  </p>
-                </div>
-                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                  <Image
-                    src="/traits6.svg"
-                    alt="Strategist & Risk Mitigator"
-                    width={64}
-                    height={64}
-                  />
-                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                    Strategist & Risk Mitigator
-                  </p>
-                </div>
-              </>
-            </div>
+            <Traits />
           </div>
         </div>
       </section>
