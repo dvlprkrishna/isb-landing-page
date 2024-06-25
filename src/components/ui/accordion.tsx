@@ -8,27 +8,38 @@ import { cn } from "@/lib/utils";
 
 const Accordion = AccordionPrimitive.Root;
 
+interface AccordionItemProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item> {
+  isTabCard?: boolean;
+}
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
+  AccordionItemProps
+>(({ className, isTabCard = false, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b", className)}
+    className={cn(isTabCard ? "border-b px-20" : "border-b", className)}
     {...props}
   />
 ));
 AccordionItem.displayName = "AccordionItem";
 
+interface AccordionTriggerProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> {
+  isTabCard?: boolean;
+}
+
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
+  AccordionTriggerProps
+>(({ className, children, isTabCard = false, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center justify-between py-4 text-[#3c4852] text-xl transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
+        isTabCard
+          ? "flex flex-1 items-center justify-between py-1 text-[#3c4852] font-semibold text-md transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+          : "flex flex-1 items-center justify-between py-4 text-[#3c4852] text-xl transition-all hover:underline [&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}
@@ -40,13 +51,18 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
+interface AccordionContentProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> {
+  fontSize?: string;
+}
+
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  AccordionContentProps
+>(({ className, children, fontSize = "text-md", ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="overflow-hidden text-md text-[#3c4852] transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+    className={`overflow-hidden text-[#3c4852] transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down ${fontSize}`}
     {...props}
   >
     <div className={cn("pb-4 pt-0", className)}>{children}</div>

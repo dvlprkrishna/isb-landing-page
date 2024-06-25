@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/table";
 
 import Image from "next/image";
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "@/app/keen-slider.min.css";
 import { AccordionBox } from "@/components/Accordion-box";
@@ -131,6 +131,37 @@ function Arrow(props: {
 }
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [currentSlide1, setCurrentSlide1] = useState(0);
+  const [loaded1, setLoaded1] = useState(false);
+  const [slider1Ref, instance1Ref] = useKeenSlider({
+    slides: {
+      perView: 2,
+      spacing: 20,
+    },
+
+    initial: 0,
+    slideChanged(slider) {
+      setCurrentSlide1(slider.track.details.rel);
+    },
+    created() {
+      setLoaded1(true);
+    },
+  });
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -152,6 +183,36 @@ export default function Home() {
     },
     created() {
       setLoaded(true);
+    },
+  });
+
+  // traits
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [currentSlide2, setCurrentSlide2] = useState(0);
+  const [loaded2, setLoaded2] = useState(false);
+  const [slider2Ref, instance2Ref] = useKeenSlider({
+    slides: {
+      perView: 2,
+      spacing: 20,
+    },
+
+    initial: 0,
+    slideChanged(slider) {
+      setCurrentSlide2(slider.track.details.rel);
+    },
+    created() {
+      setLoaded2(true);
     },
   });
 
@@ -275,96 +336,95 @@ export default function Home() {
       {/* Fintech Showcases */}
       <section className=" bg-[#f0f4f9] w-full ">
         <div className="container  flex w-full flex-col items-center text-center gap-6 pb-8 pt-8 mt-8 md:py-10 gap-x-2 gap-y-16">
-          <h2 className="text-3xl text-center text-[#3c4852] font-bold md:text-4xl">
-            <span className="text-[#3f95d0]">Fintech </span> Showcases
-          </h2>
-          <p className="text-center text-lg text-muted-foreground">
-            Explore financial technology applications with ISB - the No.1
-            Executive Education B.School. This is an exciting opportunity to
-            meet and interact with brilliant minds who have developed niche
-            fintech applications. You will dive deep into these apps&apos;
-            technology, features, and benefits and learn about the founders
-            challenges and opportunities in developing and launching them. Join
-            crucial discussions on how fintech apps impact the financial
-            industry and the future of finance. Overall, exploring fintech apps
-            with their founders can provide valuable insights and perspectives
-            into financial technology and its potential to transform how we
-            manage our finances.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full py-8">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                className="bg-white group relative shadow-md rounded-lg text-left overflow-hidden"
-              >
-                <div className="">
-                  <div className="p-6 w-full flex flex-col gap-y-3">
-                    <div className="relative  w-full h-[54px]">
-                      <Image
-                        src={card.logo}
-                        alt={card.title}
-                        width={1}
-                        height={54}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="text-md mb-1">Explore</div>
-                    <div className="text-md font-bold mb-4">
-                      {card.category}
-                    </div>
-                  </div>
+          <div className="relative my-4 w-full mx-auto">
+            <h2 className="text-3xl text-center text-[#3c4852] font-bold md:text-4xl">
+              <span className="text-[#3f95d0]">Fintech </span> Showcases
+            </h2>
+            <p className="text-center mb-4 text-lg text-muted-foreground">
+              Explore financial technology applications with ISB - the No.1
+              Executive Education B.School. This is an exciting opportunity to
+              meet and interact with brilliant minds who have developed niche
+              fintech applications. You will dive deep into these apps&apos;
+              technology, features, and benefits and learn about the founders
+              challenges and opportunities in developing and launching them.
+              Join crucial discussions on how fintech apps impact the financial
+              industry and the future of finance. Overall, exploring fintech
+              apps with their founders can provide valuable insights and
+              perspectives into financial technology and its potential to
+              transform how we manage our finances.
+            </p>
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full py-8 keen-slider"> */}
 
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full py-8">
+                {cards.map((card, index) => (
                   <div
-                    className="text-md inline-flex w-full justify-between items-center text-white p-6"
-                    style={{
-                      background:
-                        "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
-                    }}
+                    key={index}
+                    className="bg-white group relative shadow-md rounded-lg text-left overflow-hidden"
                   >
-                    Know More
-                    {/* <ArrowUpIcon className="w-6 h-6 text-black" /> */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="size-6"
+                    <div className="">
+                      <div className="p-6 w-full flex flex-col gap-y-3">
+                        <div className="relative w-full h-[54px]">
+                          <Image
+                            src={card.logo}
+                            alt={card.title}
+                            width={1}
+                            height={54}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="text-md mb-1">Explore</div>
+                        <div className="text-md font-bold mb-4">
+                          {card.category}
+                        </div>
+                      </div>
+                      <div
+                        className="text-md inline-flex w-full justify-between items-center text-white p-6"
+                        style={{
+                          background:
+                            "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
+                        }}
+                      >
+                        Know More
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="size-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      className="text-white text-sm p-6 w-full absolute bottom-0 left-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
+                      }}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m4.5 15.75 7.5-7.5 7.5 7.5"
-                      />
-                    </svg>
+                      <div className="text-md py-5">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Quia ullam a ipsam provident id vitae iure dolorem
+                        ratione. Laborum consectetur non dignissimos quia earum
+                        totam ut labore adipisci exercitationem eligendi.
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div
-                  className="text-white text-sm p-6 w-full absolute bottom-0 left-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-                  style={{
-                    background:
-                      "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
-                  }}
-                >
-                  <div className="text-md py-5">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quia ullam a ipsam provident id vitae iure dolorem ratione.
-                    Laborum consectetur non dignissimos quia earum totam ut
-                    labore adipisci exercitationem eligendi.
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="flex mx-auto font-bold">
-            Disclaimer:{" "}
-            <span className=" font-normal">
-              {" "}
-              These are indicative fintech showcases.
-            </span>
+            </>
           </div>
         </div>
 
+        {/* Projects that you will work on
+         */}
         {/*  second carousel */}
         <div className="container">
           <div className="relative w-full mb-8 mx-auto">
@@ -433,35 +493,30 @@ export default function Home() {
                   ))}
                 </div>
                 {loaded && instanceRef.current && (
-                  <>
-                    <Arrow
-                      left
-                      onClick={(e: { stopPropagation: () => any }) =>
-                        e.stopPropagation() || instanceRef.current?.prev()
-                      }
-                      disabled={currentSlide === 0}
-                    />
-
-                    <Arrow
-                      onClick={(e: { stopPropagation: () => any }) =>
-                        e.stopPropagation() || instanceRef.current?.next()
-                      }
-                      disabled={
-                        currentSlide ===
-                        instanceRef.current.track.details.slides.length - 1
-                      }
-                      left={undefined}
-                    />
-                  </>
+                  <div className="dots">
+                    {Array.from(
+                      {
+                        length: instanceRef.current.track.details.slides.length,
+                      },
+                      (_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            instanceRef.current?.moveToIdx(idx);
+                          }}
+                          className={
+                            "dot" + (currentSlide === idx ? " active" : "")
+                          }
+                        ></button>
+                      )
+                    )}
+                  </div>
                 )}
               </div>
             </>
           </div>
         </div>
       </section>
-
-      {/* Projects that you will work on
-       */}
 
       {/* Key Traits of a Fintech Leader
        */}
@@ -473,74 +528,76 @@ export default function Home() {
               Key Traits of a Fintech Leader
             </h2>
           </div>
-          <div className="flex justify-center items-center  p-6">
+          <div className="flex justify-center items-center  py-6">
             <div className="grid sm:grid-cols-2 md:grid-cols-6 gap-y-4 gap-x-8">
-              <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                <Image
-                  src="/traits1.svg"
-                  alt="Technology Leader"
-                  width={64}
-                  height={64}
-                />
-                <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                  Technology Leader
-                </p>
-              </div>
-              <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                <Image
-                  src="/traits2.svg"
-                  alt="Strategic & Creative Thinker"
-                  width={64}
-                  height={64}
-                />
-                <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                  Strategic & Creative Thinker
-                </p>
-              </div>
-              <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                <Image
-                  src="/traits3.svg"
-                  alt="Data-driven Problem Solver"
-                  width={64}
-                  height={64}
-                />
-                <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                  Data-driven Problem Solver
-                </p>
-              </div>
-              <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                <Image
-                  src="/traits4.svg"
-                  alt="Catalyst for Innovation"
-                  width={64}
-                  height={64}
-                />
-                <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                  Catalyst for Innovation
-                </p>
-              </div>
-              <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                <Image
-                  src="/traits5.svg"
-                  alt="Global Thought Leadership"
-                  width={64}
-                  height={64}
-                />
-                <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                  Global Thought Leadership
-                </p>
-              </div>
-              <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
-                <Image
-                  src="/traits6.svg"
-                  alt="Strategist & Risk Mitigator"
-                  width={64}
-                  height={64}
-                />
-                <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-                  Strategist & Risk Mitigator
-                </p>
-              </div>
+              <>
+                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
+                  <Image
+                    src="/traits1.svg"
+                    alt="Technology Leader"
+                    width={64}
+                    height={64}
+                  />
+                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+                    Technology Leader
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
+                  <Image
+                    src="/traits2.svg"
+                    alt="Strategic & Creative Thinker"
+                    width={64}
+                    height={64}
+                  />
+                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+                    Strategic & Creative Thinker
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
+                  <Image
+                    src="/traits3.svg"
+                    alt="Data-driven Problem Solver"
+                    width={64}
+                    height={64}
+                  />
+                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+                    Data-driven Problem Solver
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
+                  <Image
+                    src="/traits4.svg"
+                    alt="Catalyst for Innovation"
+                    width={64}
+                    height={64}
+                  />
+                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+                    Catalyst for Innovation
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
+                  <Image
+                    src="/traits5.svg"
+                    alt="Global Thought Leadership"
+                    width={64}
+                    height={64}
+                  />
+                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+                    Global Thought Leadership
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between">
+                  <Image
+                    src="/traits6.svg"
+                    alt="Strategist & Risk Mitigator"
+                    width={64}
+                    height={64}
+                  />
+                  <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+                    Strategist & Risk Mitigator
+                  </p>
+                </div>
+              </>
             </div>
           </div>
         </div>
@@ -632,7 +689,14 @@ export default function Home() {
             src="/ISB_INfow.webp"
             width={1170}
             height={419}
-            className="mb-4"
+            className="mb-4 hidden sm:block"
+            alt="imarticus logo"
+          />
+          <Image
+            src="/mob_ISB_INfom.webp"
+            width={440}
+            height={810}
+            className="mb-4 w-auto sm:hidden"
             alt="imarticus logo"
           />
         </div>
@@ -1034,7 +1098,14 @@ export default function Home() {
             src="/admissionprocess.webp"
             width={1170}
             height={419}
-            className="mb-4"
+            className="mb-4 hidden sm:block"
+            alt="imarticus logo"
+          />
+          <Image
+            src="/Mob_admission_process.webp"
+            width={440}
+            height={810}
+            className="mb-4 w-auto sm:hidden"
             alt="imarticus logo"
           />
         </div>
