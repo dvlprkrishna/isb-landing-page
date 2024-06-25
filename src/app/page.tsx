@@ -26,6 +26,8 @@ import { AccordionBox } from "@/components/Accordion-box";
 import ContactForm from "@/components/ContactForm";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import Traits from "@/sections/Traits";
+import FintechShowcase from "@/sections/FintechShowcase";
+import FacultySpotlight from "@/sections/FacultySpotlight";
 const data = [
   {
     _id: 1,
@@ -70,7 +72,6 @@ const data = [
     image: "Frame6.svg",
   },
 ];
-
 const cards = [
   { logo: "/edua.svg", title: "Eduvanz", category: "Lending" },
   { logo: "/edua.svg", title: "INDmoney", category: "Wealth Tech" },
@@ -293,70 +294,9 @@ export default function Home() {
               transform how we manage our finances.
             </p>
             {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full py-8 keen-slider"> */}
-
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 w-full py-8">
-                {cards.map((card, index) => (
-                  <div
-                    key={index}
-                    className="bg-white group relative shadow-md rounded-lg text-left overflow-hidden"
-                  >
-                    <div className="">
-                      <div className="p-6 w-full flex flex-col gap-y-3">
-                        <div className="relative w-full h-[54px]">
-                          <Image
-                            src={card.logo}
-                            alt={card.title}
-                            width={1}
-                            height={54}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="text-md mb-1">Explore</div>
-                        <div className="text-md font-bold mb-4">
-                          {card.category}
-                        </div>
-                      </div>
-                      <div
-                        className="text-md inline-flex w-full justify-between items-center text-white p-6"
-                        style={{
-                          background:
-                            "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
-                        }}
-                      >
-                        Know More
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="size-6"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div
-                      className="text-white text-sm p-6 w-full absolute bottom-0 left-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-                      style={{
-                        background:
-                          "linear-gradient(339deg,#4362a9 -1.99%,#50a1d5 77.11%)",
-                      }}
-                    >
-                      <div className="text-md py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Quia ullam a ipsam provident id vitae iure dolorem
-                        ratione. Laborum consectetur non dignissimos quia earum
-                        totam ut labore adipisci exercitationem eligendi.
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="navigation-wrapper">
+                <FintechShowcase />
               </div>
             </>
           </div>
@@ -467,7 +407,7 @@ export default function Home() {
               Key Traits of a Fintech Leader
             </h2>
           </div>
-          <div className="flex justify-center items-center  py-6">
+          <div className="navigation-wrapper">
             <Traits />
           </div>
         </div>
@@ -564,9 +504,9 @@ export default function Home() {
           />
           <Image
             src="/mob_ISB_INfom.webp"
-            width={440}
+            width={1170}
             height={810}
-            className="mb-4 w-auto sm:hidden"
+            className="mb-4 w-100 px-8 sm:hidden"
             alt="imarticus logo"
           />
         </div>
@@ -675,67 +615,75 @@ export default function Home() {
             Faculty <span className="text-[#3f95d0]">Spotlight</span>
           </h2>
 
-          <div className="flex flex-col items-center sm:flex-row justify-center mt-10 space-y-6 sm:space-y-0 sm:space-x-8">
-            <div
-              style={{
-                background: "linear-gradient(180deg,#3e3b68,#6c3a71)",
-              }}
-              className="bg-purple-600 text-white relative p-6 mb-8 sm:mb-0 pt-16 rounded-lg shadow-lg w-72"
-            >
-              <div className="absolute left-1/2 transform -translate-x-1/2 -top-10">
-                <Image
-                  src="/Shashwat.webp"
-                  alt="Shashwat Alok"
-                  className="rounded-full"
-                  width={80}
-                  height={80}
-                />
+          <div className="hidden sm:block">
+            <div className="flex flex-col items-center sm:flex-row justify-center mt-10 space-y-6 sm:space-y-0 sm:space-x-8">
+              <div
+                style={{
+                  background: "linear-gradient(180deg,#3e3b68,#6c3a71)",
+                }}
+                className="bg-purple-600 text-white relative p-6 mb-8 sm:mb-0 pt-16 rounded-lg shadow-lg w-72"
+              >
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-10">
+                  <Image
+                    src="/Shashwat.webp"
+                    alt="Shashwat Alok"
+                    className="rounded-full"
+                    width={80}
+                    height={80}
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-center">
+                  Shashwat Alok
+                </h3>
+                <p className="text-sm font-medium text-center">
+                  Associate Professor, Finance
+                </p>
+                <p className="text-sm mt-4">
+                  He is a faculty member at ISB&apos;s Finance Department since
+                  2013 with a Ph.D. in Finance from Washington University,
+                  directs the Digital Identity Research Initiative. His research
+                  delves into corporate finance&apos;s impact on emerging
+                  markets, encompassing law, government, ...{" "}
+                  <span className="text-blue-300 cursor-pointer">See More</span>
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-center">
-                Shashwat Alok
-              </h3>
-              <p className="text-sm font-medium text-center">
-                Associate Professor, Finance
-              </p>
-              <p className="text-sm mt-4">
-                He is a faculty member at ISB&apos;s Finance Department since
-                2013 with a Ph.D. in Finance from Washington University, directs
-                the Digital Identity Research Initiative. His research delves
-                into corporate finance&apos;s impact on emerging markets,
-                encompassing law, government, ...{" "}
-                <span className="text-blue-300 cursor-pointer">See More</span>
-              </p>
-            </div>
 
-            <div
-              style={{
-                background: "linear-gradient(180deg,#3e3b68,#6c3a71)",
-              }}
-              className="bg-purple-600 text-white relative p-6 pt-16 rounded-lg shadow-lg w-72"
-            >
-              <div className="absolute left-1/2 transform -translate-x-1/2 -top-10">
-                <Image
-                  src="/nandu.webp"
-                  alt="Nandkishore Doreswamy"
-                  className="rounded-full"
-                  width={80}
-                  height={80}
-                />
+              <div
+                style={{
+                  background: "linear-gradient(180deg,#3e3b68,#6c3a71)",
+                }}
+                className="bg-purple-600 text-white relative p-6 pt-16 rounded-lg shadow-lg w-72"
+              >
+                <div className="absolute left-1/2 transform -translate-x-1/2 -top-10">
+                  <Image
+                    src="/nandu.webp"
+                    alt="Nandkishore Doreswamy"
+                    className="rounded-full"
+                    width={80}
+                    height={80}
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-center">
+                  Nandkishore Doreswamy
+                </h3>
+                <p className="text-sm font-medium text-center">
+                  Adjunct Professor (Practice), Marketing
+                </p>
+                <p className="text-sm mt-4">
+                  He is a seasoned global executive and inspirational global
+                  executive and inspirational leader is a Visiting Faculty at
+                  the Indian School of Business, Nandu boasts 34+ years of
+                  exceptional leadership experience in diverse environments,
+                  including NESTLE, where he ...{" "}
+                  <span className="text-blue-300 cursor-pointer">See More</span>
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-center">
-                Nandkishore Doreswamy
-              </h3>
-              <p className="text-sm font-medium text-center">
-                Adjunct Professor (Practice), Marketing
-              </p>
-              <p className="text-sm mt-4">
-                He is a seasoned global executive and inspirational global
-                executive and inspirational leader is a Visiting Faculty at the
-                Indian School of Business, Nandu boasts 34+ years of exceptional
-                leadership experience in diverse environments, including NESTLE,
-                where he ...{" "}
-                <span className="text-blue-300 cursor-pointer">See More</span>
-              </p>
+            </div>
+          </div>
+
+          <div className="sm:hidden">
+            <div className="navigation-wrapper">
+              <FacultySpotlight />
             </div>
           </div>
         </div>
@@ -749,7 +697,7 @@ export default function Home() {
               Learning Experience
             </h2>
             <div className="flex flex-wrap justify-around mb-8 text-center">
-              <div className="w-full md:w-1/3    p-4 text-center flex flex-col items-center">
+              <div className="w-2/3 md:w-1/3  mx-auto  p-4 text-center flex flex-col items-center">
                 <Image
                   src="/SquareIcon1.svg"
                   height={30}
@@ -757,7 +705,7 @@ export default function Home() {
                   alt="Pre-Recorded Video Lectures Icon"
                   className="w-[60px] h-[60px] p-2 rounded-[16px] bg-[#e3e0e7] mb-[16px]"
                 />
-                <p className="text-[#4e5d8c] font-bold text-[28px] max-w-[350px] w-[350px] leading-[36px]">
+                <p className="text-[#4e5d8c] font-bold text-xl sm:text-[28px] max-w-[350px] w-2/3 sm:w-[350px] leading-normal sm:leading-[36px]">
                   30 Weeks Pre-Recorded Video Lectures
                 </p>
               </div>
@@ -769,7 +717,7 @@ export default function Home() {
                   alt="Case Studies Icon"
                   className="w-[60px] h-[60px] p-2  flex justify-center items-center rounded-[16px] bg-[#e3e0e7] mb-[16px]"
                 />
-                <p className="text-[#4e5d8c] font-bold text-[28px] max-w-[350px] w-[350px] leading-[36px]">
+                <p className="text-[#4e5d8c] font-bold text-xl sm:text-[28px] max-w-[350px] w-2/3 sm:w-[350px] leading-normal sm:leading-[36px]">
                   5+ Case Studies
                 </p>
               </div>
@@ -781,7 +729,7 @@ export default function Home() {
                   alt="Live Sessions Icon"
                   className="w-[60px] h-[60px] p-2  flex justify-center items-center rounded-[16px] bg-[#e3e0e7] mb-[16px]"
                 />
-                <p className="text-[#4e5d8c] font-bold text-[28px] max-w-[350px] w-[350px] leading-[36px]">
+                <p className="text-[#4e5d8c] font-bold text-xl sm:text-[28px] max-w-[350px] w-2/3 sm:w-[350px] leading-normal sm:leading-[36px]">
                   6 Live Sessions With ISB Faculty
                 </p>
               </div>
@@ -793,7 +741,7 @@ export default function Home() {
                   alt="Fintech Showcases Icon"
                   className="w-[60px] h-[60px] p-2  flex justify-center items-center rounded-[16px] bg-[#e3e0e7] mb-[16px]"
                 />
-                <p className="text-[#4e5d8c] font-bold text-[28px] max-w-[350px] w-[350px] leading-[36px]">
+                <p className="text-[#4e5d8c] font-bold text-xl sm:text-[28px] max-w-[350px] w-2/3 sm:w-[350px] leading-normal sm:leading-[36px]">
                   5 Fintech Showcases By Industry Experts
                 </p>
               </div>
@@ -805,7 +753,7 @@ export default function Home() {
                   alt="Industry Experts Icon"
                   className="w-[60px] h-[60px] p-2  flex justify-center items-center rounded-[16px] bg-[#e3e0e7] mb-[16px]"
                 />
-                <p className="text-[#4e5d8c] font-bold text-[28px] max-w-[350px] w-[350px] leading-[36px]">
+                <p className="text-[#4e5d8c] font-bold text-xl sm:text-[28px] max-w-[350px] w-2/3 sm:w-[350px] leading-normal sm:leading-[36px]">
                   Sessions With Industry Experts On Fintech Practice
                 </p>
               </div>
@@ -817,7 +765,7 @@ export default function Home() {
                   alt="Mentoring Icon"
                   className="w-[60px] h-[60px] p-2  flex justify-center items-center rounded-[16px] bg-[#e3e0e7] mb-[16px]"
                 />
-                <p className="text-[#4e5d8c] font-bold text-[28px] max-w-[350px] w-[350px] leading-[36px]">
+                <p className="text-[#4e5d8c] font-bold text-xl sm:text-[28px] max-w-[350px] w-2/3 sm:w-[350px] leading-normal sm:leading-[36px]">
                   Executive Fintech Mentoring
                 </p>
               </div>
@@ -973,9 +921,9 @@ export default function Home() {
           />
           <Image
             src="/Mob_admission_process.webp"
-            width={440}
+            width={1170}
             height={810}
-            className="mb-4 w-auto sm:hidden"
+            className="mb-4 w-2/3 sm:hidden"
             alt="imarticus logo"
           />
         </div>
@@ -992,10 +940,10 @@ export default function Home() {
             }}
           >
             <div className="flex-1 text-center text-white h-auto  p-10 rounded-lg ">
-              <h2 className="text-3xl mb-4">Programme Fee</h2>
+              <h2 className="text-2xl sm:text-3xl mb-4">Programme Fee</h2>
               <div className=" font-bold flex flex-row justify-center items-baseline my-8">
-                <p className="text-[64px]">₹ 5,00,000 </p>
-                <span className="text-3xl"> + GST </span>
+                <p className="text-5xl  sm:text-[64px]">₹ 5,00,000 </p>
+                <span className="text-lg sm:text-3xl"> + GST </span>
               </div>
               <Button className="flex-1 text-[#3c4852] bg-white hover:bg-white py-8 px-12 text-lg rounded-lg">
                 Enquire Now

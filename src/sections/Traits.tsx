@@ -1,4 +1,6 @@
+import { useKeenSlider } from "keen-slider/react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Traits() {
   const traits = [
@@ -40,19 +42,63 @@ export default function Traits() {
     },
   ];
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [sliderRef, instanceRef] = useKeenSlider({
+    slides: {
+      perView: 6,
+      spacing: 20,
+    },
+    breakpoints: {
+      "(max-width: 768px)": {
+        slides: {
+          perView: 1,
+          spacing: 10,
+        },
+      },
+    },
+    initial: 0,
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    created() {
+      setLoaded(true);
+    },
+  });
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
-      {traits.map((trait) => (
-        <div
-          key={trait.id}
-          className="flex flex-col items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between"
-        >
-          <Image src={trait.src} alt={trait.alt} width={64} height={64} />
-          <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
-            {trait.text}
-          </p>
+    <>
+      <div ref={sliderRef} className="keen-slider my-4">
+        {traits.map((trait) => (
+          <div
+            key={trait.id}
+            className="keen-slider__slide flex flex-col gap-y-4 items-center bg-white px-4 py-8 rounded-lg shadow-lg justify-between"
+          >
+            <Image src={trait.src} alt={trait.alt} width={64} height={64} />
+            <p className="mt-2 text-center font-semibold text-[#165d93] text-lg">
+              {trait.text}
+            </p>
+          </div>
+        ))}
+      </div>
+      {loaded && instanceRef.current && (
+        <div className="dots md:hidden">
+          {Array.from(
+            {
+              length: instanceRef.current.track.details.slides.length,
+            },
+            (_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  instanceRef.current?.moveToIdx(idx);
+                }}
+                className={"dot" + (currentSlide === idx ? " active" : "")}
+              ></button>
+            )
+          )}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 }
