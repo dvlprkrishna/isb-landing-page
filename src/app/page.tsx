@@ -160,7 +160,12 @@ export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-between ">
       {/* header */}
-      <section className=" w-full text-left gap-6 pb-8 pt-6 md:py-24 bg-cover bg-[url('/headerw.webp')]">
+      <section
+        className=" w-full text-left gap-6 pb-8 pt-6 md:py-24 bg-cover bg-[url('/headerw.webp')]"
+        style={{
+          backgroundImage: "url('/headerw.webp')",
+        }}
+      >
         <div className="container text-white flex flex-col sm:flex-row gap-y-5 justify-between">
           <div className="flex flex-col gap-y-4">
             {/* ISBLogo.webp */}
@@ -324,6 +329,9 @@ export default function Home() {
                     <div
                       key={index}
                       className="bg-[url('/2.webp')] bg-cover group relative shadow-md rounded-lg text-left overflow-hidden keen-slider__slide number-slide"
+                      style={{
+                        backgroundImage: "url('/2.webp')",
+                      }}
                     >
                       <div className="">
                         <div className="p-6 w-full flex flex-col gap-y-3">
@@ -400,7 +408,12 @@ export default function Home() {
 
       {/* Key Traits of a Fintech Leader
        */}
-      <section className=" w-full text-center gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/leader1.webp')]">
+      <section
+        className=" w-full text-center gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/leader1.webp')]"
+        style={{
+          backgroundImage: "url('/leader1.webp')",
+        }}
+      >
         <div className="container text-white flex flex-col justify-between">
           <div className="flex flex-col sm:flex-row justify-center gap-y-6">
             {/* ISBLogo.webp */}
@@ -610,7 +623,12 @@ export default function Home() {
 
       {/* Faculty Spotlight
        */}
-      <section className="w-full text-left gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/BGw.webp')]">
+      <section
+        className="w-full text-left gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/BGw.webp')]"
+        style={{
+          backgroundImage: "url('/BGw.webp')",
+        }}
+      >
         <div className="container text-white flex flex-col gap-y-5 justify-center">
           <h2 className="text-3xl text-center text-[#3c4852] font-bold md:text-4xl">
             Faculty <span className="text-[#3f95d0]">Spotlight</span>
@@ -804,7 +822,12 @@ export default function Home() {
 
       {/* What Certificate Will You Get?
        */}
-      <section className=" w-full text-left gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/cBG.webp')]">
+      <section
+        className=" w-full text-left gap-6 pb-8 pt-6 md:py-10 bg-cover bg-[url('/cBG.webp')]"
+        style={{
+          backgroundImage: "url('/cBG.webp')",
+        }}
+      >
         <div className="container text-white flex flex-col sm:flex-row gap-y-5 justify-between">
           <div className="flex  flex-col justify-center gap-y-6">
             {/* ISBLogo.webp */}
