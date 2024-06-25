@@ -28,6 +28,7 @@ import ExitIntentModal from "@/components/ExitIntentModal";
 import Traits from "@/sections/Traits";
 import FintechShowcase from "@/sections/FintechShowcase";
 import FacultySpotlight from "@/sections/FacultySpotlight";
+import StickyButton from "@/sections/StickyButton";
 const data = [
   {
     _id: 1,
@@ -1082,32 +1083,72 @@ export default function Home() {
       </section>
 
       {/*  sticky */}
-      <div className="fixed bottom-0 w-full flex flex-row justify-center items-baseline gap-x-3 sm:gap-x-5 bg-white space-y-4 p-8 sm:p-4">
-        <div className="flex items-center space-x-2 bg-transparent border border-blue-500 text-blue-500 rounded-lg py-2 px-3 sm:px-8 cursor-pointer">
-          <div className="relative w-6 h-6">
-            <Image
-              alt="Get free consulting"
-              height={20}
-              width={20}
-              src="/Call.svg"
-              className="absolute inset-0 w-full h-full object-contain"
-            />
+      {/* <div className="hidden">
+        <div className="hidden  fixed bottom-0 w-full  flex-row justify-center items-baseline gap-x-3 sm:gap-x-5 bg-white space-y-4 p-8 sm:p-4">
+          <div className="flex items-center space-x-2 bg-transparent border border-blue-500 text-blue-500 rounded-lg py-2 px-3 sm:px-8 cursor-pointer">
+            <div className="relative w-6 h-6">
+              <Image
+                alt="Get free consulting"
+                height={20}
+                width={20}
+                src="/Call.svg"
+                className="absolute inset-0 w-full h-full object-contain"
+              />
+            </div>
+            <span className="font-semibold text-lg">Get Free Consulting</span>
           </div>
-          <span className="font-semibold text-lg">Get Free Consulting</span>
-        </div>
-        <div className="flex items-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-3 sm:px-8 cursor-pointer">
-          <div className="relative w-6 h-6">
-            <Image
-              alt="Download Brochure"
-              src="/download.svg"
-              height={20}
-              width={20}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+          <div className="flex items-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-3 sm:px-8 cursor-pointer">
+            <div className="relative w-6 h-6">
+              <Image
+                alt="Download Brochure"
+                src="/download.svg"
+                height={20}
+                width={20}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            <span className="font-semibold text-lg">Download Brochure</span>
           </div>
-          <span className="font-semibold text-lg">Download Brochure</span>
         </div>
-      </div>
+
+        <div className="  flex fixed bottom-0 w-full flex-row justify-center items-baseline gap-x-3 sm:gap-x-5 bg-white space-y-4 p-8 sm:p-4">
+          <div className="flex items-center justify-center space-x-2 bg-transparent border border-blue-500 text-blue-500 rounded-lg py-2 px-3 sm:px-8 cursor-pointer w-full sm:w-auto">
+            <div className="relative w-6 h-6">
+              <Image
+                alt="Get free consulting"
+                height={20}
+                width={20}
+                src="/Call.svg"
+                className="absolute inset-0 w-full h-full object-contain"
+              />
+            </div>
+            <span className="font-semibold text-lg whitespace-nowrap">
+              Get Free Consulting
+            </span>
+          </div>
+          <div className="flex items-center justify-center space-x-2 bg-[#3f95d0] text-white rounded-lg py-2 px-3 sm:px-8 cursor-pointer w-full sm:w-auto">
+            <div className="relative w-6 h-6">
+              <Image
+                alt="Download Brochure"
+                src="/download.svg"
+                height={20}
+                width={20}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            <span className="font-semibold text-lg whitespace-nowrap">
+              Download Brochure
+            </span>
+          </div>
+        </div>
+      </div> */}
+
+      {/* CTA buttons */}
+      <>
+        <div className=" fixed bottom-0 w-screen">
+          <StickyButton />
+        </div>
+      </>
 
       {/* exit intent */}
       <ExitIntentModal />

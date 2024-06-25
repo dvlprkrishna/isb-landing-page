@@ -10,7 +10,8 @@ export default function FacultySpotlight() {
       alt: "Shashwat Alok",
       position: "Associate Professor, Finance",
       bio: "He is a faculty member at ISB's Finance Department since 2013 with a Ph.D. in Finance from Washington University, directs the Digital Identity Research Initiative. His research delves into corporate finance's impact on emerging markets, encompassing law, government, ...",
-      moreLink: "#",
+      fullBio:
+        "He is a faculty member at ISB's Finance Department since 2013 with a Ph.D. in Finance from Washington University, directs the Digital Identity Research Initiative. His research delves into corporate finance's impact on emerging markets, encompassing law, government, and firm dynamics. Shashwat's extensive work is published in top journals and presented at various conferences, showcasing his contributions to the academic and practical world of finance.",
     },
     {
       name: "Nandkishore Doreswamy",
@@ -18,10 +19,12 @@ export default function FacultySpotlight() {
       alt: "Nandkishore Doreswamy",
       position: "Adjunct Professor (Practice), Marketing",
       bio: "He is a seasoned global executive and inspirational global executive and inspirational leader is a Visiting Faculty at the Indian School of Business, Nandu boasts 34+ years of exceptional leadership experience in diverse environments, including NESTLE, where he ...",
-      moreLink: "#",
+      fullBio:
+        "He is a seasoned global executive and inspirational global executive and inspirational leader is a Visiting Faculty at the Indian School of Business, Nandu boasts 34+ years of exceptional leadership experience in diverse environments, including NESTLE, where he held several top positions. His deep expertise in marketing, leadership, and strategic management is a significant asset to ISB's academic and professional community.",
     },
   ];
 
+  const [expanded, setExpanded] = useState(professor.map(() => false));
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -45,6 +48,14 @@ export default function FacultySpotlight() {
       setLoaded(true);
     },
   });
+
+  const handleSeeMoreClick = (index: number) => {
+    setExpanded((prev) => {
+      const newExpanded = [...prev];
+      newExpanded[index] = !newExpanded[index];
+      return newExpanded;
+    });
+  };
 
   return (
     <>
@@ -70,9 +81,12 @@ export default function FacultySpotlight() {
               <h3 className="text-xl font-semibold text-center">{prof.name}</h3>
               <p className="text-sm font-medium text-center">{prof.position}</p>
               <p className="text-sm mt-4">
-                {prof.bio}{" "}
-                <span className="text-blue-300 cursor-pointer">
-                  <a href={prof.moreLink}>See More</a>
+                {expanded[index] ? prof.fullBio : prof.bio}{" "}
+                <span
+                  className="text-blue-300 cursor-pointer"
+                  onClick={() => handleSeeMoreClick(index)}
+                >
+                  {expanded[index] ? "See Less" : "See More"}
                 </span>
               </p>
             </div>
